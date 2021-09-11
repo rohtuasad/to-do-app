@@ -34,13 +34,8 @@ class LoginComponent extends Component {
     }
 
     loginClicked() {
-        if (this.state.username === 'dasauthor' && this.state.password === '1234') {
-            this.setState(
-                {
-                    hasLoginFailed: false,
-                    showSuccessMessage: true
-                }
-            )
+        if (this.state.username === 'username' && this.state.password === '1234') {
+            this.props.history.push("/welcome")
         } else {
             this.setState(
                 {
