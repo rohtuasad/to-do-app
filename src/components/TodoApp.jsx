@@ -12,7 +12,7 @@ class TodoApp extends Component {
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
-                            <Route path="/welcome" component={WelcomeComponent} />
+                            <Route path="/welcome/:name" component={WelcomeComponent} />
                             <Route component={Error404Component} />
                         </Switch>
                     </>
