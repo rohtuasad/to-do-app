@@ -16,27 +16,27 @@ class ListTodosComponent extends Component {
         return (
             <div>
                 <h1>List todos</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>description</th>
-                            <th>Target Date</th>
-                            <th>Is Completed?</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.todos.map(todo =>
-                            <tr>
-                                <td>{todo.id}</td>
-                                <td>{todo.description}</td>
-                                <td>{todo.done.toString()}</td>
-                                <td>{todo.targetDate.toString()}</td>
+                <div className="container">
+                    <table class="table">
+                        <thead>
+                            <tr>                               
+                                <th>description</th>
+                                <th>Target Date</th>
+                                <th>Is Completed?</th>
                             </tr>
-                        )
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {this.state.todos.map(todo =>
+                                <tr>
+                                    <td>{todo.description}</td>
+                                    <td>{todo.done.toString()}</td>
+                                    <td>{todo.targetDate.toString()}</td>
+                                </tr>
+                            )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div >
         )
     }

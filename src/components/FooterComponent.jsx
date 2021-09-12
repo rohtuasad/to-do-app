@@ -3,9 +3,9 @@ import React, { Component } from "react";
 class FooterComponent extends Component {
     render() {
         return (
-            <div>
-                <hr />Footer
-            </div >
+           <footer className="footer">
+               <span className="text-muted">All lefts destroyed by @Rothuasad</span>
+           </footer>
         )
     }
 }
