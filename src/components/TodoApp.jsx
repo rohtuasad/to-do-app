@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoginComponent from "./LoginComponent"
 import WelcomeComponent from "./WelcomeComponent"
 import ListTodosComponent from "./ListTodosComponent"
+import HeaderComponent from "./HeaderComponent";
+import FooterComponent from "./FooterComponent";
 
 class TodoApp extends Component {
     render() {
@@ -10,6 +12,7 @@ class TodoApp extends Component {
             <div className="TodoApp">
                 <Router>
                     <>
+                        <HeaderComponent />
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
@@ -18,6 +21,7 @@ class TodoApp extends Component {
                             <Route component={Error404Component} />
                         </Switch>
                     </>
+                    <FooterComponent />
                 </Router>
             </div>
         )
