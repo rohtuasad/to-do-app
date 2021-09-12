@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import {Link } from 'react-router-dom'
 
 class WelcomeComponent extends Component {
     render() {
         return (
-            <div>Welcome {this.props.match.params.name}</div >
+            <div>
+                Welcome {this.props.match.params.name}. You can manege your todos <Link to='/todos'>here</Link>
+            </div>
         )
     }
 }
