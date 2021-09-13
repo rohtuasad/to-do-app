@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthenticationService from "./AuthenticationService.js";
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class LoginComponent extends Component {
 
     loginClicked() {
         if (this.state.username === 'username' && this.state.password === '1234') {
+            AuthenticationService.registerSuccessLogin(this.state.username, this.state.password)
             this.props.history.push(`/welcome/${this.state.username}`)
         } else {
             this.setState(
