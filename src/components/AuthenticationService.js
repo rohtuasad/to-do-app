@@ -6,6 +6,10 @@ class AuthenticationService {
     logout() {
         sessionStorage.removeItem('authenticatedUser')
     }
+
+    isUserLoggedIn() {
+        return sessionStorage.getItem('authenticatedUser') != null
+    }
 }
 
 export default new AuthenticationService();
