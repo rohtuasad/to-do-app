@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import TodoDataService from "../api/TodoDataService";
+import AuthenticationService from "./AuthenticationService";
 
 class TodoComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: 1,
-            description: 'Learn forms',
+            id: this.props.match.params.id,
+            description: '',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
         this.onSubmit = this.onSubmit.bind(this)
@@ -25,12 +27,13 @@ class TodoComponent extends Component {
                     validateOnChange={false}
                     validateOnBlur={true}
                     validate={this.validate}
+                    enableReinitialize={true}
                 >
                     {
                         (props) => (
                             <Form>
-                                <ErrorMessage name="description" component="div" className="alert alert-warning"/>
-                                <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
+                                <ErrorMessage name="description" component="div" className="alert alert-warning" />
+                                <ErrorMessage name="targetDate" component="div" className="alert alert-warning" />
                                 <fieldset className='form-group'>
                                     <label>Description</label>
                                     <Field className='form-control' type='text' name='description' />
@@ -47,11 +50,20 @@ class TodoComponent extends Component {
         </div>)
     }
 
+    componentDidMount() {
+        TodoDataService.retrieveTodo(AuthenticationService.getLoggedInUser(), this.state.id)
+        .then(response => this.setState({
+            description: response.data.description,
+            targetDate: response.data.targetDate
+        }))
+            
+    }
+
     validate(values) {
         let errors = {}
         if (!values.description) {
             errors.description = 'Enter a Description'
-        } else if(values.description.length < 5) {
+        } else if (values.description.length < 5) {
             errors.description = 'Enter at least 5 chacacters in Description'
         }
         if (!moment(values.targetDate).isValid()) {
