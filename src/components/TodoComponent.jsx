@@ -52,11 +52,11 @@ class TodoComponent extends Component {
 
     componentDidMount() {
         TodoDataService.retrieveTodo(AuthenticationService.getLoggedInUser(), this.state.id)
-        .then(response => this.setState({
-            description: response.data.description,
-            targetDate: response.data.targetDate
-        }))
-            
+            .then(response => this.setState({
+                description: response.data.description,
+                targetDate: response.data.targetDate
+            }))
+
     }
 
     validate(values) {
@@ -73,7 +73,14 @@ class TodoComponent extends Component {
     }
 
     onSubmit(values) {
-        console.log(values)
+        TodoDataService.updateTodo(AuthenticationService.getLoggedInUser(), this.state.id,
+            {
+                id: this.state.id,
+                username: AuthenticationService.getLoggedInUser(),
+                description: values.description,
+                targetDate: values.targetDate
+            })
+            .then(() => this.props.history.push('/todos'))
     }
 }
 

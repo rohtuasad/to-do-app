@@ -9,6 +9,10 @@ class TodoDataService {
         return axios.get(`http://localhost:8080/users/${username}/todos/${id}`)
     }
 
+    updateTodo(username, id, todo) {
+        return axios.put(`http://localhost:8080/users/${username}/todos/${id}`, todo)
+    }
+
     deleteTodo(username, id) {
         return axios.delete(`http://localhost:8080/users/${username}/todos/${id}`)
     }
