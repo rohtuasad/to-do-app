@@ -8,7 +8,8 @@ class ListTodosComponent extends Component {
         super(props)
         this.state = {
             todos: [],
-            message: null
+            message: null,
+            error: null
         }
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
         this.updateTodoClicked = this.updateTodoClicked.bind(this)
@@ -45,6 +46,18 @@ class ListTodosComponent extends Component {
                     this.setState({ todos: response.data })
                 }
             )
+            .catch(
+                error => {
+                    let errorMessage = ''
+                    if (error.message) {
+                        errorMessage += error.message
+                    }
+                    if (error.response && error.response.data) {
+                        errorMessage += error.response.data.message
+                    }
+                    this.setState({ error: errorMessage })
+                }
+            )
     }
 
     render() {
@@ -53,12 +66,13 @@ class ListTodosComponent extends Component {
                 <h1>List todos</h1>
                 <div className="container">
                     {this.state.message && <div className='allert alert-success'>{this.state.message}</div>}
+                    {this.state.error && <div className='allert alert-warning'>{this.state.error}</div>}
                     <table className="table">
                         <thead>
                             <tr>
                                 <th>description</th>
                                 <th>Is Completed?</th>
-                                <th>Target Date</th>                                
+                                <th>Target Date</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
