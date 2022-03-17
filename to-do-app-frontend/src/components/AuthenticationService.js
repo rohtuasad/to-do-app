@@ -3,7 +3,7 @@ import axios from "axios"
 class AuthenticationService {
 
     executeBasicAuthentication(username, password) {
-        return axios.get('http://localhost:8080/basicauth', {
+        return axios.get('http://localhost:8081/basicauth', {
             headers: {
                 authorization: this.createBasicAuthToken(username, password)
             }
