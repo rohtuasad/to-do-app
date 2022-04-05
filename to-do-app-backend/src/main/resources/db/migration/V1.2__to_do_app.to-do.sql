@@ -8,7 +8,7 @@ create table to_do_app.todo
     is_done     boolean NOT NULL DEFAULT false,
     user_name   varchar(50),
     constraint user_name_fk FOREIGN KEY (user_name)
-        REFERENCES to_do_app.user (login)
+        REFERENCES security_utils.user (login)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )

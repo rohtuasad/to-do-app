@@ -37,18 +37,13 @@ class BasicAuthConfiguration(
         auth.jdbcAuthentication().dataSource(dataSource)
             .usersByUsernameQuery(
                 "select login, password, is_enabled "
-                        + "from to_do_app.user "
+                        + "from security_utils.user "
                         + "where login = ?"
             )
             .authoritiesByUsernameQuery(
                 "select login,'ROLE_USER' as authority "
-                        + "from to_do_app.user "
+                        + "from security_utils.user "
                         + "where login = ?"
             )
-    }
-
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
     }
 }
