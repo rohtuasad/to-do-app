@@ -25,6 +25,7 @@ class BasicAuthConfiguration(
         http.csrf().disable()
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .antMatchers(HttpMethod.POST, "/v1/user/registration").permitAll()
             .antMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated()
             .and()
